@@ -15,6 +15,11 @@ const firaCode = Fira_Code({
 export const metadata: Metadata = {
   title: "Český Lorem Ipsum Generator",
   description: "Generátor českého lorem ipsum textu s AI",
+   icons: {
+    icon: "/favicon.ico", // nebo "/favicon.svg"
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

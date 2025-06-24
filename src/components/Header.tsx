@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button, Switch } from "@heroui/react";
 import { SunIcon } from "./icons/SunIcon";
 import { MoonIcon } from "./icons/MoonIcon";
@@ -47,18 +48,15 @@ export function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <Image
-              src="/next.svg"
-              alt="Next.js Logo"
-              width={120}
-              height={30}
-              className="dark:invert"
-            />
-            <div className="hidden sm:block">
-              <h1 className="text-lg font-semibold text-gray-800 dark:text-white">
-                Český Lorem Ipsum
-              </h1>
-            </div>
+             <Link href="https://www.codefit.cz">
+                <Image
+                src="/logo.svg"
+                alt="Next.js Logo"
+                width={120}
+                height={30}
+                className="dark:invert"
+              />
+             </Link>
           </div>
 
           {/* Pravá strana - Theme toggle a Support */}

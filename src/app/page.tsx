@@ -219,14 +219,13 @@ Text musí být v češtině a musí obsahovat HTML značky. Vrať mi pouze čis
                           variant="bordered"
                           minRows={24}
                           maxRows={24}
-                          // eslint-disable-next-line no-console
-                          onClear={() => console.log("textarea cleared")}
+                          onClear={() => console.log('textarea cleared')}
                         />
                     </Tab>
                   </Tabs>
                 ) : (
                   <div className="text-gray-500 dark:text-gray-400">
-                    <p>Vyberte nastavení a klikněte na "Vygenerovat text"</p>
+                    <p>Vyberte nastavení a klikněte na Vygenerovat text</p>
                   </div>
                 )}
               </CardBody>

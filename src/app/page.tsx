@@ -25,6 +25,17 @@ interface GeneratedContent {
 }
 
 export default function Home() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Codefit',
+    url: 'https://www.codefit.cz',
+    logo: 'https://www.codefit.cz/logo.svg',
+    description: 'Codefit je vývojářská firma, která se zabývá vývojem webových aplikací a služeb.',
+    address: {
+      '@type': 'PostalAddress',
+    }
+  }
   const [settings, setSettings] = useState<TextSettings>({
     paragraphs: true,
     headings: false,
@@ -245,6 +256,12 @@ Text musí být v češtině a musí obsahovat HTML značky. Vrať mi pouze čis
             </CardBody>
           </Card>
         </div>
+        <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
       </div>
   );
 }

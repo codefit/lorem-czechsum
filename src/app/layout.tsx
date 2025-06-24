@@ -35,6 +35,18 @@ export const metadata: Metadata = {
   },
 };
 
+ const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Codefit',
+    url: 'https://www.codefit.cz',
+    logo: 'https://www.codefit.cz/logo.svg',
+    description: 'Codefit je vývojářská firma, která se zabývá vývojem webových aplikací a služeb.',
+    address: {
+      '@type': 'PostalAddress',
+    }
+  }
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -53,6 +65,12 @@ export default function RootLayout({
           </main>
           <Footer />
         </Providers>
+            <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
       </body>
     </html>
   );

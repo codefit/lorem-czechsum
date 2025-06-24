@@ -10,7 +10,7 @@ import { MoonIcon } from "./icons/MoonIcon";
 export function Header() {
   const [isDark, setIsDark] = useState(false);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const [scrollBehavior, setScrollBehavior] = React.useState("inside" as const);
+  const [scrollBehavior] = React.useState("inside" as const);
 
   useEffect(() => {
     // Načti uložené nastavení theme

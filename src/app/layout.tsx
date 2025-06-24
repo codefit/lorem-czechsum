@@ -15,6 +15,19 @@ const firaCode = Fira_Code({
 export const metadata: Metadata = {
   title: "Český Lorem Ipsum Generator",
   description: "Generátor českého lorem ipsum textu s AI",
+  authors: [{ name: "Codefit", url: "https://www.codefit.cz" }],
+  creator: "Codefit",
+  publisher: "Codefit",
+  applicationName: "Český Lorem Ipsum Generator",
+  keywords: ["český lorem ipsum", "generátor českého lorem ipsum", "český lorem ipsum generator", "český lorem ipsum generátor"],
+  robots: "index, follow",
+  openGraph: {
+    title: "Český Lorem Ipsum Generator",
+    description: "Generátor českého lorem ipsum textu s AI",
+    url: "https://cesky-lorem-ipsum.codefit.cz",
+    siteName: "Český Lorem Ipsum Generator",
+    locale: "cs_CZ",
+  },
    icons: {
     icon: "/favicon.ico", // nebo "/favicon.svg"
     shortcut: "/favicon.ico",

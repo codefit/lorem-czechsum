@@ -240,6 +240,7 @@ Text musí být v češtině a musí obsahovat HTML značky. Vrať mi pouze čis
                 <Chip color="secondary" variant="flat">Český text</Chip>
                 <Chip color="success" variant="flat">HTML formátování</Chip>
                 <Chip color="warning" variant="flat">Google Gemini API</Chip>
+                <Chip color="danger" variant="flat">Hero UI</Chip>
               </div>
             </CardBody>
           </Card>

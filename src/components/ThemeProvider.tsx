@@ -16,21 +16,23 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    
-    // Načti uložené nastavení theme
+    // Nastav téma okamžitě při mount
     const savedTheme = localStorage.getItem('theme') as Theme;
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
     const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+    
     setTheme(initialTheme);
     
-    // Aplikuj theme na document
+    // Aplikuj téma na DOM
     if (initialTheme === "dark") {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
+    
+    // Označ jako načtené
+    document.body.classList.add('theme-loaded');
+    setMounted(true);
   }, []);
 
   const toggleTheme = () => {
@@ -50,7 +52,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   // Zabráň hydration mismatch - vrátí loading stav
   if (!mounted) {
-    return <div style={{ visibility: 'hidden' }}>{children}</div>;
+    return <div className="theme-loading">{children}</div>;
   }
 
   return (

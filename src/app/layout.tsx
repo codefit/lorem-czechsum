@@ -53,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="cs" className={firaCode.className}>
+    <html lang="cs" className={firaCode.className} suppressHydrationWarning>
       <head>
         <GoogleAnalytics />
       </head>

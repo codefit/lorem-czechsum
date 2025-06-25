@@ -47,7 +47,7 @@ export function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-               <Link href="https://www.codefit.cz">
+               <Link href="/">
                   <Image
                   src="/logo.svg"
                   alt="Codefit.cz Logo"

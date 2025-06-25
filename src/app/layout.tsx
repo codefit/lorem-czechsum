@@ -56,8 +56,12 @@ export default function RootLayout({
     <html lang="cs" className={firaCode.className} suppressHydrationWarning>
       <head>
         <GoogleAnalytics />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
-      <body className="flex flex-col min-h-screen">
+      <body className="flex flex-col min-h-screen" suppressHydrationWarning>
         <Providers>
            <Header />
           <main className="flex-1">

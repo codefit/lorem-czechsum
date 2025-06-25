@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -49,7 +50,7 @@ export function Header() {
                <Link href="https://www.codefit.cz">
                   <Image
                   src="/logo.svg"
-                  alt="Next.js Logo"
+                  alt="Codefit.cz Logo"
                   width={120}
                   height={30}
                   className="dark:invert"
@@ -59,23 +60,8 @@ export function Header() {
 
             {/* Navigace */}
             <div className="hidden md:flex items-center space-x-6">
-              <Link href="/">
-                <Button
-                  color="primary"
-                  variant="light"
-                  size="sm"
-                >
-                  Hlavní stránka
-                </Button>
-              </Link>
               <Link href="/about">
-                <Button
-                  color="primary"
-                  variant="light"
-                  size="sm"
-                >
-                  O aplikaci
-                </Button>
+                 O aplikaci
               </Link>
             </div>
 

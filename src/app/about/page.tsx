@@ -147,13 +147,7 @@ export default function AboutPage() {
         {/* Zpět na hlavní stránku */}
         <div className="text-center mt-12">
           <Link href="/">
-            <Button
-              color="primary"
-              variant="light"
-              size="lg"
-            >
-              ← Zpět na hlavní stránku
-            </Button>
+            ← Zpět na hlavní stránku
           </Link>
         </div>
       </div>

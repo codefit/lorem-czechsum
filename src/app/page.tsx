@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Card, CardBody, CardHeader } from "@heroui/react";
 import { Button } from "@heroui/react";
 import { Checkbox } from "@heroui/react";
@@ -38,7 +38,33 @@ export default function Home() {
   const [generatedContent, setGeneratedContent] = useState<GeneratedContent | null>(null);
   const [activeTab, setActiveTab] = useState("formatted");
 
-  const generateLoremIpsum = async () => {
+  const handleWordCountChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSettings(prev => ({ ...prev, wordCount: parseInt(e.target.value) || 100 }));
+  }, []);
+
+  const handleSettingChange = useCallback((setting: keyof TextSettings, value: boolean) => {
+    setSettings(prev => ({ ...prev, [setting]: value }));
+  }, []);
+
+  const copyToClipboard = useCallback(async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('Text zkopírován do schránky!');
+    } catch (error) {
+      console.error('Chyba při kopírování:', error);
+      alert('Chyba při kopírování textu');
+    }
+  }, []);
+
+  const handleTabChange = useCallback((key: React.Key) => {
+    setActiveTab(key as string);
+  }, []);
+
+  const generateLoremIpsum = async (e?: React.FormEvent) => {
+    if (e) {
+      e.preventDefault();
+    }
+    
     setIsGenerating(true);
     
     try {
@@ -87,11 +113,6 @@ Text musí být v češtině a musí obsahovat HTML značky. Vrať mi pouze čis
     }
   };
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    alert('Text zkopírován do schránky!');
-  };
-
   return (
       <div className="p-4">
         <div className="max-w-6xl mx-auto">
@@ -116,7 +137,7 @@ Text musí být v češtině a musí obsahovat HTML značky. Vrať mi pouze čis
                   <Input
                     type="number"
                     value={String(settings?.wordCount || 100)}
-                    onChange={(e) => setSettings(prev => ({ ...prev, wordCount: parseInt(e.target.value) || 100 }))}
+                    onChange={handleWordCountChange}
                     min="10"
                     max="1000"
                     className="w-full"
@@ -131,7 +152,7 @@ Text musí být v češtině a musí obsahovat HTML značky. Vrať mi pouze čis
                   <div className="flex flex-col gap-2">
                     <Checkbox
                       isSelected={settings.paragraphs}
-                      onValueChange={(checked) => setSettings(prev => ({ ...prev, paragraphs: checked }))}
+                      onValueChange={(checked) => handleSettingChange('paragraphs', checked)}
                       isDisabled
                     >
                       Odstavce (p) - vždy povoleno
@@ -139,28 +160,28 @@ Text musí být v češtině a musí obsahovat HTML značky. Vrať mi pouze čis
 
                     <Checkbox
                       isSelected={settings.headings}
-                      onValueChange={(checked) => setSettings(prev => ({ ...prev, headings: checked }))}
+                      onValueChange={(checked) => handleSettingChange('headings', checked)}
                     >
                       Nadpisy (h1-h6)
                     </Checkbox>
 
                     <Checkbox
                       isSelected={settings.lists}
-                      onValueChange={(checked) => setSettings(prev => ({ ...prev, lists: checked }))}
+                      onValueChange={(checked) => handleSettingChange('lists', checked)}
                     >
                       Seznamy (ul, ol)
                     </Checkbox>
 
                     <Checkbox
                       isSelected={settings.strong}
-                      onValueChange={(checked) => setSettings(prev => ({ ...prev, strong: checked }))}
+                      onValueChange={(checked) => handleSettingChange('strong', checked)}
                     >
                       Tučný text (strong)
                     </Checkbox>
 
                     <Checkbox
                       isSelected={settings.italic}
-                      onValueChange={(checked) => setSettings(prev => ({ ...prev, italic: checked }))}
+                      onValueChange={(checked) => handleSettingChange('italic', checked)}
                     >
                       Kurzíva (em)
                     </Checkbox>
@@ -200,7 +221,7 @@ Text musí být v češtině a musí obsahovat HTML značky. Vrať mi pouze čis
                 {generatedContent ? (
                   <Tabs 
                     selectedKey={activeTab} 
-                    onSelectionChange={(key) => setActiveTab(key as string)}
+                    onSelectionChange={handleTabChange}
                     className="w-full"
                   >
                     <Tab key="formatted" title="Formátovaný">

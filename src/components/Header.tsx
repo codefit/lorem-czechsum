@@ -57,6 +57,28 @@ export function Header() {
                </Link>
             </div>
 
+            {/* Navigace */}
+            <div className="hidden md:flex items-center space-x-6">
+              <Link href="/">
+                <Button
+                  color="primary"
+                  variant="light"
+                  size="sm"
+                >
+                  Hlavní stránka
+                </Button>
+              </Link>
+              <Link href="/about">
+                <Button
+                  color="primary"
+                  variant="light"
+                  size="sm"
+                >
+                  O aplikaci
+                </Button>
+              </Link>
+            </div>
+
             {/* Pravá strana - Theme toggle a Support */}
             <div className="flex items-center space-x-4">
               {/* Theme toggle */}

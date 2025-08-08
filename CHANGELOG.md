@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0] - 2024-12-19
+
+### Changed
+
+- Změněn Gemini model na `gemini-1.5-flash-exp` pro minimalizaci nákladů (nejlevnější dostupný model)
+
 ## [1.1.0] - 2024-12-19
 
 ### Added

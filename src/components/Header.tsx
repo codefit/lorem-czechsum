@@ -96,12 +96,12 @@ export function Header() {
 
       {/* Support Modal */}
      <Modal 
-     isOpen={isOpen} 
-     placement="top-center" 
+      isOpen={isOpen} 
+      placement="top-center" 
       scrollBehavior={scrollBehavior} 
       onOpenChange={onOpenChange}
-       motionProps={{
-    variants: {
+      motionProps={{
+      variants: {
         enter: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.2 } },
         exit:  { opacity: 0, scale: 0.9, y: -20, transition: { duration: 0.2 } }
       }

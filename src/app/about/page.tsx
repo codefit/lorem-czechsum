@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button} from "@heroui/react";
+import { Button } from "@heroui/react";
 import Link from "next/link";
 
 export default function AboutPage() {

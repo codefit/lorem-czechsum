@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
   try {
     const { prompt } = await request.json();
 
-    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCFRq60vRW3n0cZ-xNFjC3SywDbWlyaFgc';
+    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyATd7aDD_metzrY1Upo8k6Sre7JCgYRBF0';
 
     const data = {
       contents: [

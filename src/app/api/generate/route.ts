@@ -26,7 +26,18 @@ export async function POST(request: NextRequest) {
   try {
     const { prompt } = await request.json();
 
-    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyATd7aDD_metzrY1Upo8k6Sre7JCgYRBF0';
+    // Získej API klíč z environment proměnné
+    const apiKey = process.env.GEMINI_API_KEY;
+    
+    if (!apiKey) {
+      console.error('GEMINI_API_KEY environment variable is not set');
+      return NextResponse.json(
+        { error: 'API klíč není nakonfigurován' },
+        { status: 500 }
+      );
+    }
+
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     const data = {
       contents: [
@@ -55,6 +66,8 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Gemini API error:', response.status, errorText);
       throw new Error(`API request failed: ${response.status}`);
     }
 

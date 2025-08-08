@@ -7,7 +7,12 @@ const nextConfig: NextConfig = {
   },
   // Zajistí lepší client-side routing
   trailingSlash: false,
-
+  // Optimalizace pro SPA chování
+  swcMinify: true,
+  // Validace environment proměnných
+  env: {
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+  },
   async headers() {
     return [
       {

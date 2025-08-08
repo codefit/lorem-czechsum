@@ -97,17 +97,34 @@ Text musí být v češtině a musí obsahovat HTML značky. Vrať mi pouze čis
       });
 
       if (!response.ok) {
-        throw new Error('Chyba při generování');
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.error || `HTTP ${response.status}: ${response.statusText}`;
+        throw new Error(errorMessage);
       }
 
       const data = await response.json();
+      
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      
       setGeneratedContent({
         formatted: data.content,
         raw: data.content
       });
     } catch (error) {
       console.error('Chyba:', error);
-      alert('Došlo k chybě při generování textu');
+      const errorMessage = error instanceof Error ? error.message : 'Došlo k neznámé chybě';
+      
+      if (errorMessage.includes('API klíč není nakonfigurován')) {
+        alert('API klíč není nakonfigurován. Kontaktujte administrátora.');
+      } else if (errorMessage.includes('401') || errorMessage.includes('403')) {
+        alert('Neplatný API klíč. Zkontrolujte nastavení.');
+      } else if (errorMessage.includes('429')) {
+        alert('Překročen limit API požadavků. Zkuste to později.');
+      } else {
+        alert(`Došlo k chybě při generování textu: ${errorMessage}`);
+      }
     } finally {
       setIsGenerating(false);
     }
